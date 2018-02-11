@@ -50,7 +50,7 @@ zentype = {'offense':zeno, 'defense':zend}
 
 rarities   = ['Common', 'Rare', 'Super Rare']
 
-print('Use \'help\' as your only argument to display options')
+print('Use \'help\' as your only argument for help')
 
 if len(args) == 2 or len(args) == 3 and type(args[1]) is str:
     if len(args) == 2 and args[1] == 'help':
