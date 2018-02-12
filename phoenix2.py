@@ -2,7 +2,10 @@ import pandas as pd
 import sys
 import collections
 
-args = sys.argv
+def uniq(mylist):
+    return list(set(mylist))
+
+args = sys.argv 
 df = pd.read_csv('phoenix2.csv')
 
 shipslist = ['Shinova', 'NC-150', 'Tar\'cah', 
@@ -88,19 +91,14 @@ if len(args) == 2 or len(args) == 3 and type(args[1]) is str:
     elif len(args) == 2 and args[1] == 'all':
         with pd.option_context('display.max_rows', len(df)):
             print(df.to_string())
-    elif len(args) == 2 and any(args[1] in x.lower() for x in shipslist):
-        test = df[df['Ship'].isin([x for x in shipslist if args[1] in x.lower()])]
-        with pd.option_context('display.max_rows', len(test)):
-            print(test.to_string())
-        exit()
-    elif len(args) == 3 and any(' '.join([x for x in args[1:3]]) in x.lower() for x in shipslist):
-        test = df[df['Ship'].isin([x for x in shipslist if ' '.join([x for x in args[1:3]]) in x.lower()])]
+    elif len(args) == 2 and ':' not in args[1] and any(list(y.lower() in x.lower() for x in shipslist for y in args[1].split(','))):
+        test = df[df['Ship'].isin(x for x in shipslist for y in args[1].split(',') if y.lower() in x.lower())]
         with pd.option_context('display.max_rows', len(test)):
             print(test.to_string())
         exit()
 
 argsl = [x.split(':') for x in args if x not in [args[0]]]
-argsl = [x for x in argsl if len(x) > 1 and x[0].lower() in categories]
+argsl = [x for x in argsl if len(x) > 1 and any(x[0].lower() in y for y in categories)]
 argsclean = list(x[0].title()+': '+x[1].replace(',', ', ').replace('-', ' ').title() for x in argsl)
 if argsclean != []:
     print('Args: ', argsclean)
@@ -110,24 +108,25 @@ weapon = []
 aura = []
 zen = []
 rarity = []
-
 for i, x in enumerate(argsl):
-    if x[0] == 'advantage':
-        special = list([y.title() for y in [z.replace('-', ' ') for z in x[1].split(',')]])
-    elif x[0] == 'weapon':
-        weapon = list([y.title() for y in [z.replace('-', ' ') for z in x[1].split(',')]])
-    elif x[0] == 'aura':
+    print(x[1])
+    if x[0] in 'advantage':
+        special = uniq(list(z for z in specials for y in x[1].split(',') if y.lower() in z.lower()))
+    elif x[0] in 'weapon':
+            weapon = uniq(list(z for z in weapons for y in x[1].split(',') if y.lower() in z.lower()))
+    elif x[0] in 'aura':
         if x[1] in ('offense', 'defense'):
             aura = auratype[x[1]]
         else:
-            aura = list([y.title() for y in [z.replace('-', ' ') for z in x[1].split(',')]])
-    elif x[0] == 'zen':
+            aura = uniq(list(z for z in auras for y in x[1].split(',') if y.lower() in z.lower()))
+    elif x[0] in 'zen':
+        print('hi')
         if x[1] in ('offense', 'defense'):
             zen = zentype[x[1]]
         else:
-            zen = list([y.title() for y in [z.replace('-', ' ') for z in x[1].split(',')]])
-    elif x[0] == 'rarity':
-        rarity = list([y.title() for y in [z.replace('-', ' ') for z in x[1].split(',')]])
+            zen = uniq(list(z for z in zens for y in x[1].split(',') if y.lower() in z.lower()))
+    elif x[0] in 'rarity':
+        rarity = uniq(list(z for z in rarities for y in x[1].split(',') if y.lower() in z.lower()))
 
 special = specials if special == [] else special
 weapon = weapons if weapon == [] else weapon
