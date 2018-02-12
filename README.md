@@ -15,7 +15,7 @@ If you don't have pandas installed, follow the instructions [here](https://panda
 
 ## Demo
 
-![](https://github.com/beninato8/phoenix/blob/master/vids/search/gifs/16a.gif)
+![](https://github.com/beninato8/phoenix/blob/master/vids/search/gifs/16.gif)
 
 See other demos [here](https://github.com/beninato8/phoenix/tree/master/vids)
 
