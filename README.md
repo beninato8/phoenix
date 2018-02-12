@@ -7,4 +7,8 @@ If you don't have pandas installed, follow the instructions [here](https://panda
 
 #TODO
 
-- [ ] Select what ships you have
+- [ ] Select what ships you own and only search those
+
+- [x] Use substrings to search (kap instead of kappa-drive)
+
+- [x] List multiple ships at once (cin,raz,von)
