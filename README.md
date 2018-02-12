@@ -5,13 +5,13 @@ Just run phoenix2.py and make sure phoenix2.csv is in the same directory.
 
 If you don't have pandas installed, follow the instructions [here](https://pandas.pydata.org/pandas-docs/stable/install.html)
 
-#Demo
+# Demo
 
 ![](https://github.com/beninato8/phoenix/blob/master/vids/search/gifs/16a.gif)
 
 See other demos [here](phoenix/vids/)
 
-#TODO
+# TODO
 
 - [ ] Select what ships you own and only search those
 

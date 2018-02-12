@@ -111,28 +111,30 @@ rarity = []
 for i, x in enumerate(argsl):
     print(x[1])
     if x[0] in 'advantage':
-        special = uniq(list(z for z in specials for y in x[1].split(',') if y.lower() in z.lower()))
+        special += uniq(list(z for z in specials for y in x[1].split(',') if y.lower() in z.lower()))
     elif x[0] in 'weapon':
-            weapon = uniq(list(z for z in weapons for y in x[1].split(',') if y.lower() in z.lower()))
+            weapon += uniq(list(z for z in weapons for y in x[1].split(',') if y.lower() in z.lower()))
     elif x[0] in 'aura':
         if x[1] in ('offense', 'defense'):
-            aura = auratype[x[1]]
+            aura += auratype[x[1]]
         else:
-            aura = uniq(list(z for z in auras for y in x[1].split(',') if y.lower() in z.lower()))
+            aura += uniq(list(z for z in auras for y in x[1].split(',') if y.lower() in z.lower()))
     elif x[0] in 'zen':
         print('hi')
         if x[1] in ('offense', 'defense'):
-            zen = zentype[x[1]]
+            zen += zentype[x[1]]
         else:
-            zen = uniq(list(z for z in zens for y in x[1].split(',') if y.lower() in z.lower()))
+            zen += uniq(list(z for z in zens for y in x[1].split(',') if y.lower() in z.lower()))
     elif x[0] in 'rarity':
-        rarity = uniq(list(z for z in rarities for y in x[1].split(',') if y.lower() in z.lower()))
+        rarity += uniq(list(z for z in rarities for y in x[1].split(',') if y.lower() in z.lower()))
 
 special = specials if special == [] else special
 weapon = weapons if weapon == [] else weapon
 aura = auras if aura == [] else aura
 zen = zens if zen == [] else zen
 rarity = rarities if rarity == [] else rarity
+
+print(special, weapon, aura, zen, rarity)
 
 dfspecial = df['Best Against'].isin(special)
 dfweapon = df['Main Weapon'].isin(weapon)
