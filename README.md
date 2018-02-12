@@ -7,7 +7,7 @@ If you don't have pandas installed, follow the instructions [here](https://panda
 
 #Demo
 
-![](phoenix/vids/search/gifs/10.gif)
+![](https://github.com/beninato8/phoenix/blob/master/vids/search/gifs/10.gif)
 
 See other demos [here](phoenix/vids/)
 
