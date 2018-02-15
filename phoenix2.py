@@ -60,7 +60,7 @@ if len(args) == 1:
 if len(args) == 2 or len(args) == 3 and type(args[1]) is str:
     if len(args) == 2 and args[1] == 'help':
         print('\nYou may need to make your terminal window a little wider to see the results.')
-        print('Each category should not have any spaces in it, use only commas to seperate options.')
+        print('Each category should not have any spaces in it, use only commas to seperate categories.')
         print('For options with spaces, replace the space with a dash.')
         print('Capitalization isn\'t necessary.\n')
         print('Depreciated arguments example:\nrarity:super-rare advantage:armor,no-armor aura:phalanx,missile-swarm')
