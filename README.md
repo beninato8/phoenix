@@ -24,7 +24,9 @@ Run `python3 phoenix2.py help` to see features
 
 ## Demo
 
-![](https://github.com/beninato8/phoenix/blob/master/vids/search/gifs/16.gif)
+<p align="center">
+    <img src="https://raw.githubusercontent.com/beninato8/phoenix/master/vids/search/gifs/16.gif" width="600"/> <!--Pikachu-->
+</p>
 
 See other demos [here](https://github.com/beninato8/phoenix/tree/master/vids)
 
@@ -41,23 +43,6 @@ See other demos [here](https://github.com/beninato8/phoenix/tree/master/vids)
 - [x] List multiple ships at once (cin,raz,von)
 
 - [ ] Fix ~~bug~~ feature with overlapping text for just rare (rar:rare => Super Rare and Rare)
-
-### TOC
-
-[Demos](#demo)
-
-[TODO](#todo)
-
-[Installation](#installation)
-
-## Demo
-
-<p align="center">
-    <img src="https://github.com/beninato8/phoenix/blob/master/vids/search/gifs/16.gif" width="700"/> <!--Pikachu-->
-</p>
-
-See other demos [here](https://github.com/beninato8/phoenix/tree/master/vids)
-
 
 ## Installation
 
@@ -84,11 +69,4 @@ git clone https://github.com/beninato8/phoenix.git
 ```
 mkdir -p ~/Github/
 cd ~/Github/
-```
-
-### Alternatively, you could...
-
-Run [this](https://github.com/beninato8/phoenix/blob/master/install.sh) script
-```
-#bash <(curl -s https://raw.githubusercontent.com/beninato8/phoenix/master/install.sh)
 ```
