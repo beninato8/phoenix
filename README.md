@@ -6,6 +6,9 @@ All input is done through command line arguments.
 
 Just run phoenix2.py and make sure phoenix2.csv is in the same directory.
 
+You can either run the program using `python3 phoenix2.py [args]` or you can use the shell script, 
+which is simply running the previous command. To run the script, simply do `./phoenix [args]`
+
 If you don't have pandas installed, follow the instructions [here](https://pandas.pydata.org/pandas-docs/stable/install.html)
 
 ### Table of Contents
@@ -20,7 +23,7 @@ If you don't have pandas installed, follow the instructions [here](https://panda
 
 ## Features
 
-Run `python3 phoenix2.py help` to see features
+Run `./phoenix help` to see features
 
 ## Demo
 
