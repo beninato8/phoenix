@@ -53,7 +53,9 @@ zentype = {'offense':zeno, 'defense':zend}
 
 rarities   = ['Common', 'Rare', 'Super Rare']
 
-print('Use \'help\' as your only argument for help')
+if len(args) == 1:
+    print('Use \'help\' as your only argument for help')
+    exit()
 
 if len(args) == 2 or len(args) == 3 and type(args[1]) is str:
     if len(args) == 2 and args[1] == 'help':
@@ -61,7 +63,8 @@ if len(args) == 2 or len(args) == 3 and type(args[1]) is str:
         print('Each category should not have any spaces in it, use only commas to seperate options.')
         print('For options with spaces, replace the space with a dash.')
         print('Capitalization isn\'t necessary.\n')
-        print('Arguments example:\nrarity:rare advantage:armor,no-armor, aura:phalanx,missile-swarm')
+        print('Depreciated arguments example:\nrarity:super-rare advantage:armor,no-armor aura:phalanx,missile-swarm')
+        print('Better arguments example:\nrar:s adv:ar,no aura:phal,miss')
         print('\nTo see a list of all options for categories, use \'options\' as your only argument.')
         print('To see a list of ships, use \'ships\' as your only argument.')
         print('To see the stats for all ships, use \'all\' as your only argument.')
@@ -99,9 +102,9 @@ if len(args) == 2 or len(args) == 3 and type(args[1]) is str:
 
 argsl = [x.split(':') for x in args if x not in [args[0]]]
 argsl = [x for x in argsl if len(x) > 1 and any(x[0].lower() in y for y in categories)]
-argsclean = list(x[0].title()+': '+x[1].replace(',', ', ').replace('-', ' ').title() for x in argsl)
-if argsclean != []:
-    print('Args: ', argsclean)
+# argsclean = list(x[0].title()+': '+x[1].replace(',', ', ').replace('-', ' ').title() for x in argsl)
+# if argsclean != []:
+#     print('Args: ', argsclean)
 
 special = []
 weapon = []
@@ -109,24 +112,20 @@ aura = []
 zen = []
 rarity = []
 for i, x in enumerate(argsl):
-    print(x[1])
     if x[0] in 'advantage':
-        special += uniq(list(z for z in specials for y in x[1].split(',') if y.lower() in z.lower()))
+        special = special + uniq(list(z for z in specials for y in x[1].split(',') if y.lower() in z.lower()))
     elif x[0] in 'weapon':
-            weapon += uniq(list(z for z in weapons for y in x[1].split(',') if y.lower() in z.lower()))
+            weapon = weapon + uniq(list(z for z in weapons for y in x[1].split(',') if y.lower() in z.lower()))
     elif x[0] in 'aura':
-        if x[1] in ('offense', 'defense'):
-            aura += auratype[x[1]]
-        else:
-            aura += uniq(list(z for z in auras for y in x[1].split(',') if y.lower() in z.lower()))
+        if any(w in ('offense', 'defense') for w in x[1].split(',')):
+            aura = aura + auratype[[w for w in x[1].split(',') if w in ('offense', 'defense')][0]]
+        aura = aura + uniq(list(z for z in auras for y in x[1].split(',') if y.lower() in z.lower()))
     elif x[0] in 'zen':
-        print('hi')
-        if x[1] in ('offense', 'defense'):
-            zen += zentype[x[1]]
-        else:
-            zen += uniq(list(z for z in zens for y in x[1].split(',') if y.lower() in z.lower()))
+        if any(w in ('offense', 'defense') for w in x[1].split(',')):
+            zen = zen + zentype[[w for w in x[1].split(',') if w in ('offense', 'defense')][0]]
+        zen = zen + uniq(list(z for z in zens for y in x[1].split(',') if y.lower() in z.lower()))
     elif x[0] in 'rarity':
-        rarity += uniq(list(z for z in rarities for y in x[1].split(',') if y.lower() in z.lower()))
+        rarity = rarity + uniq(list(z for z in rarities for y in x[1].split(',') if y.lower() in z.lower()))
 
 special = specials if special == [] else special
 weapon = weapons if weapon == [] else weapon
@@ -134,7 +133,9 @@ aura = auras if aura == [] else aura
 zen = zens if zen == [] else zen
 rarity = rarities if rarity == [] else rarity
 
-print(special, weapon, aura, zen, rarity)
+if any([zen == zens, special==specials, aura==auras, rarity==rarities, weapon==weapons]):
+    for i, x in enumerate([special, weapon, aura, zen, rarity]):
+        print("%s: %s" % (categories[i].title(), ', '.join(x)))
 
 dfspecial = df['Best Against'].isin(special)
 dfweapon = df['Main Weapon'].isin(weapon)
