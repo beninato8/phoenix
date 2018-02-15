@@ -52,7 +52,9 @@ See other demos [here](https://github.com/beninato8/phoenix/tree/master/vids)
 
 ## Demo
 
-![](https://github.com/beninato8/phoenix/blob/master/vids/search/gifs/16.gif)
+<p align="center">
+    <img src="https://github.com/beninato8/phoenix/blob/master/vids/search/gifs/16.gif" width="700"/> <!--Pikachu-->
+</p>
 
 See other demos [here](https://github.com/beninato8/phoenix/tree/master/vids)
 
