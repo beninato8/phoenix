@@ -120,6 +120,7 @@ for i, x in enumerate(argsl):
         if any(w in ('offense', 'defense') for w in x[1].split(',')):
             aura = aura + auratype[[w for w in x[1].split(',') if w in ('offense', 'defense')][0]]
         aura = aura + uniq(list(z for z in auras for y in x[1].split(',') if y.lower() in z.lower()))
+        print(aura)
     elif x[0] in 'zen':
         if any(w in ('offense', 'defense') for w in x[1].split(',')):
             zen = zen + zentype[[w for w in x[1].split(',') if w in ('offense', 'defense')][0]]
